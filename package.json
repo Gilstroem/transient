@@ -2,10 +2,14 @@
   "name": "@gilstroem/transient",
   "version": "1.0.2",
   "description": "Hook for shared Transient state, such as notifications, messages, et cetera.",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "module": "./esm/index.js",
   "react-native": "./esm/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/**",
+    "esm/**"
+  ],
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs",
     "build:cjs": "ncc build lib/index.ts -o dist -m -e react",
@@ -29,11 +33,11 @@
     "mocha": "^8.0.1",
     "nyc": "^15.1.0",
     "react": "^16.13.1",
+    "react-dom": "16.11.0",
     "react-test-renderer": "^16.13.1",
     "typescript": "^3.9.6"
   },
-  "files": [
-    "dist/**",
-    "esm/**"
-  ]
+  "peerDependencies": {
+    "react": "^16.11.0"
+  }
 }
