@@ -1,2 +1,2 @@
 # transient
-Hook for shared Transiet state, such as notifications, messages, et cetera.
+Hook for shared Transient state, such as notifications, messages, et cetera.
