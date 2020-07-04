@@ -58,7 +58,7 @@ export default class Stores {
 
   subscribe(
     cb: { (transientStrings: string[]): void },
-    key: string = "transient"
+    key: string = "__DEFAULT"
   ) {
     const store = this.__stores.get(key);
     if (store) {
@@ -71,7 +71,7 @@ export default class Stores {
   }
 
   unsubscribe(
-    key: string = "transient",
+    key: string = "__DEFAULT",
     cb: { (transientStrings: string[]): void }
   ) {
     const store = this.__stores.get(key);
@@ -85,7 +85,7 @@ export default class Stores {
     }
   }
 
-  insert(data: any, lifetime: number = 5000, key: string = "transient") {
+  insert(data: any, lifetime: number = 5000, key: string = "__DEFAULT") {
     const store = this.__stores.get(key);
     if (store) {
       store.insert(data, lifetime);

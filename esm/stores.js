@@ -45,7 +45,7 @@ var Stores = /** @class */ (function () {
         this.__stores = new Map();
     }
     Stores.prototype.subscribe = function (cb, key) {
-        if (key === void 0) { key = "transient"; }
+        if (key === void 0) { key = "__DEFAULT"; }
         var store = this.__stores.get(key);
         if (store) {
             store.subscribe(cb);
@@ -57,7 +57,7 @@ var Stores = /** @class */ (function () {
         }
     };
     Stores.prototype.unsubscribe = function (key, cb) {
-        if (key === void 0) { key = "transient"; }
+        if (key === void 0) { key = "__DEFAULT"; }
         var store = this.__stores.get(key);
         if (store) {
             store.unsubscribe(cb);
@@ -69,7 +69,7 @@ var Stores = /** @class */ (function () {
     };
     Stores.prototype.insert = function (data, lifetime, key) {
         if (lifetime === void 0) { lifetime = 5000; }
-        if (key === void 0) { key = "transient"; }
+        if (key === void 0) { key = "__DEFAULT"; }
         var store = this.__stores.get(key);
         if (store) {
             store.insert(data, lifetime);

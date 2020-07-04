@@ -5,7 +5,7 @@ var stores = new Stores();
  * Subscribe to updates on data. Updates on insertion and deletion
  * at the end of the insertions lifetime.
  *
- * @param {string} [key = transient] - the namespace of the transient data. If no key is specified, a default key is used.
+ * @param {string} [key = __DEFAULT] - the namespace of the transient data. If no key is specified, a default key is used.
  */
 function useTransient(key) {
     var _a = useState([]), transient = _a[0], setTransient = _a[1];
@@ -22,7 +22,7 @@ export default useTransient;
  *
  * @param {Any} data - the transient data to be inserted.
  * @param {number} [lifetime = 5000] - the lifetime in milliseconds. Optional - defaults to 5000.
- * @param {string} [key = transient] - the namespace of the transient data. If no key is specified, a default key is used.
+ * @param {string} [key = __DEFAULT] - the namespace of the transient data. If no key is specified, a default key is used.
  */
 export function insert(data, lifetime, key) {
     stores.insert(data, lifetime, key);
