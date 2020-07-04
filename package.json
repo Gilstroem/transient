@@ -1,5 +1,5 @@
 {
-  "name": "transient",
+  "name": "@gilstroem/transient",
   "version": "1.0.1",
   "description": "Hook for shared Transient state, such as notifications, messages, et cetera.",
   "main": "dist/index.js",
