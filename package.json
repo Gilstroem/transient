@@ -1,6 +1,6 @@
 {
   "name": "@gilstroem/transient",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Hook for shared Transient state, such as notifications, messages, et cetera.",
   "keywords": [
     "react",
