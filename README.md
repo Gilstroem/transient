@@ -5,9 +5,20 @@
   React hook for shared transient state
 </h1>
 
-A simple, tiny, library to automatically handle transient state, such as notifications, messages, or anything else that has a specific lifetime. An alternative to complex state, or messy passing down of state to emit and subscribe to events between children/siblings.
+<p align="center">
+  
+  <a aria-label="NPM version" href="https://www.npmjs.com/package/@gilstroem/transient">
+    <img alt="" src="https://badgen.net/npm/v/@gilstroem/transient">
+  </a>
+  <a aria-label="Package size" href="https://bundlephobia.com/result?p=@gilstroem/transient">
+    <img alt="" src="https://badgen.net/bundlephobia/minzip/@gilstroem/transient">
+  </a>
+  <a aria-label="License" href="https://github.com/gilstroem/transient/blob/master/LICENSE">
+    <img alt="" src="https://badgen.net/npm/license/@gilstroem/transient">
+  </a>
+</p>
 
-**Zero dependencies**, **Tiny** - 675 bytes (minified + gzipped, [bundlephobia](https://bundlephobia.com/result?p=@gilstroem/transient@1.0.2))
+A simple, tiny, library to automatically handle transient state, such as notifications, messages, or anything else that has a specific lifetime. An alternative to complex state, or messy passing down of state to emit and subscribe to events between children/siblings.
 
 <br/>
 
