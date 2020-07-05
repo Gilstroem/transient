@@ -9,6 +9,8 @@ A simple, tiny, library to automatically handle transient state, such as notific
 
 **Zero dependencies**, **Tiny** - 675 bytes (minified + gzipped, [bundlephobia](https://bundlephobia.com/result?p=@gilstroem/transient@1.0.2))
 
+<br/>
+
 ## Quick Start
 
 ```js
@@ -39,11 +41,15 @@ function Greet({ name }) {
 }
 ```
 
+<br/>
+
 ## Usage
 
 ```
 npm install @gilstroem/transient
 ```
+
+<br/>
 
 ## API
 
@@ -62,6 +68,8 @@ const data = useTransient(key);
 
 - `data`: an array of the data for the given key. Defaults to an empty array (`[]`).
 
+<br/>
+
 ### insert
 
 ```js
@@ -79,6 +87,8 @@ insert(`Hello, World!`, 6000, "notifications");
 
 **N/A**
 
+<br/>
+
 ## Examples
 
 - [Simple](#simple)
@@ -86,6 +96,8 @@ insert(`Hello, World!`, 6000, "notifications");
 - [Lifetimes](#lifetimes)
 - [Dependent Fetching](#dependent-fetching)
 - [Notifications use-case example (complex data)](<#notifications-use-case-example-(complex-data)>)
+
+<br/>
 
 ### Simple
 
@@ -114,6 +126,8 @@ function Greet({ name }) {
   );
 }
 ```
+
+<br/>
 
 ### Namespaced
 
@@ -164,6 +178,8 @@ function Greet({ name }) {
 }
 ```
 
+<br/>
+
 ### Lifetimes
 
 ```js
@@ -175,6 +191,8 @@ insert(`I will be gone in a second 👋`, 1000);
 ...
 insert(`I will stick around for a minute 🐒`, 60000);
 ```
+
+<br/>
 
 ### Notifications use-case example (complex data)
 
@@ -228,6 +246,8 @@ function CreateTodo() {
   );
 }
 ```
+
+<br/>
 
 ## Author
 
