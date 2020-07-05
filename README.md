@@ -7,11 +7,9 @@
 
 A simple, tiny, library to automatically handle transient state, such as notifications, messages, or anything else that has a specific lifetime. An alternative to complex state, or messy passing down of state to emit and subscribe to events between children/siblings.
 
-**Tiny** - 675 bytes (minified + gzipped, [bundlephobia](https://bundlephobia.com/result?p=@gilstroem/transient@1.0.2))
+**Zero dependencies**, **Tiny** - 675 bytes (minified + gzipped, [bundlephobia](https://bundlephobia.com/result?p=@gilstroem/transient@1.0.2))
 
 ## Quick Start
-
-Simple example
 
 ```js
 // Subscriber example
@@ -28,6 +26,8 @@ function Notifications() {
     </ul>
   );
 }
+
+...
 
 // Insertion example
 import { insert } from "@gilstroem/transient";
@@ -90,7 +90,6 @@ insert(`Hello, World!`, 6000, "notifications");
 ### Simple
 
 ```js
-// Subscriber example
 import useTransient from "@gilstroem/transient";
 
 function Notifications() {
@@ -105,7 +104,8 @@ function Notifications() {
   );
 }
 
-// Insertion example
+...
+
 import { insert } from "@gilstroem/transient";
 
 function Greet({ name }) {
@@ -118,7 +118,6 @@ function Greet({ name }) {
 ### Namespaced
 
 ```js
-// Subscriber example
 import useTransient from "@gilstroem/transient";
 
 function Notifications() {
@@ -143,7 +142,8 @@ function Notifications() {
   );
 }
 
-// Insertion example
+...
+
 import { insert } from "@gilstroem/transient";
 
 function Greet({ name }) {
@@ -167,8 +167,9 @@ function Greet({ name }) {
 ### Lifetimes
 
 ```js
+import { insert } from "@gilstroem/transient";
 ...
-insert(`I am here for 5 seconds, the default`);
+insert(`I am here for 5 seconds, the default lifetime`);
 ...
 insert(`I will be gone in a second 👋`, 1000);
 ...
@@ -177,7 +178,56 @@ insert(`I will stick around for a minute 🐒`, 60000);
 
 ### Notifications use-case example (complex data)
 
-> TODO
+```js
+import useTransient from "@gilstroem/transient";
+
+function Notifications() {
+  const notifications = useTransient("notifications");
+
+  return (
+    <ul>
+      {notifications.map(({ text, type }) => (
+        <li className={`notification type-${type}`} key={text}>
+          {text}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// ...
+
+import { insert } from "@gilstroem/transient";
+
+function CreateTodo() {
+  //... form state logic
+
+  handleSubmit = () => {
+    try {
+      // ... submit logic
+      insert(
+        { text: `Your todo was saved!`, type: "positive" },
+        4000,
+        "notifications"
+      );
+    } catch (err) {
+      insert(
+        {
+          text: `Your todo could not be saved, try again later!`,
+          type: "warning",
+        },
+        6000,
+        "notifications"
+      );
+    }
+  };
+
+  return (
+    // ... render a form
+    <button onClick={handleSubmit}>Save new todo</button>
+  );
+}
+```
 
 ## Author
 
