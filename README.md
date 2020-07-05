@@ -168,7 +168,7 @@ function Greet({ name }) {
 
 ```js
 ...
-insert(`I am here for 5 seconds, the defaullt`);
+insert(`I am here for 5 seconds, the default`);
 ...
 insert(`I will be gone in a second 👋`, 1000);
 ...
@@ -181,7 +181,7 @@ insert(`I will stick around for a minute 🐒`, 60000);
 
 ## Author
 
-- Nikolaj Alexander Gilstrom ([@gilstroem](https://twitter.com/gilstroem)) – [gilstroem.com](https://gilstroem.com)
+- Nikolaj Alexander Gilstroem ([@gilstroem](https://twitter.com/gilstroem)) – [gilstroem.com](https://gilstroem.com)
 
 <br/>
 
