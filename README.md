@@ -279,7 +279,7 @@ export interface Notification {
 }
 
 const Notifications: FunctionComponent = () => {
-  const notifications = useTransient("notifications");
+  const notifications: Notification[] = useTransient<Notification>("notifications");
 
   return (
     <ul>
