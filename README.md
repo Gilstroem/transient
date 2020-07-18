@@ -107,6 +107,7 @@ insert(`Hello, World!`, 6000, "notifications");
 - [Lifetimes](#lifetimes)
 - [Dependent Fetching](#dependent-fetching)
 - [Notifications use-case example (complex data)](<#notifications-use-case-example-(complex-data)>)
+- [Typescript example](#typescript-example)
 
 <br/>
 
@@ -231,7 +232,7 @@ import { insert } from "@gilstroem/transient";
 function CreateTodo() {
   //... form state logic
 
-  handleSubmit = () => {
+  const handleSubmit = () => {
     try {
       // ... submit logic
       insert(
@@ -244,6 +245,80 @@ function CreateTodo() {
         {
           text: `Your todo could not be saved, try again later!`,
           type: "warning",
+        },
+        6000,
+        "notifications"
+      );
+    }
+  };
+
+  return (
+    // ... render a form
+    <button onClick={handleSubmit}>Save new todo</button>
+  );
+}
+```
+
+<br/>
+
+### Typescript example
+
+```js
+import useTransient from "@gilstroem/transient";
+
+export enum NotificationType {
+  NORMAL,
+  WARNING,
+  ALERT,
+}
+
+export interface Notification {
+  text: string
+  type: NotificationType
+  id: string
+}
+
+const Notifications: FunctionComponent = () => {
+  const notifications = useTransient("notifications");
+
+  return (
+    <ul>
+      {notifications.map(({ text, type, id }) => (
+        <li className={`notification type-${type}`} key={id}>
+          {text}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// ...
+
+import { insert } from "@gilstroem/transient";
+import { v4 as uuid } from "uuid";
+import { Notification, NotificationType } from "../path-to-notifications-component"
+
+const CreateTodo: FunctionComponent = () => {
+  //... form state logic
+
+  const handleSubmit = () => {
+    try {
+      // ... submit logic
+      insert<Notification>(
+        {
+          text: `Your todo was saved! 👍`,
+          type: NotificationType.NORMAL,
+          id: uuid
+        },
+        4000,
+        "notifications"
+      );
+    } catch (err) {
+      insert<Notification>(
+        {
+          text: `Your todo could not be saved 👎 try again later!`,
+          type: NotificationType.ERROR,
+          id: uuid
         },
         6000,
         "notifications"

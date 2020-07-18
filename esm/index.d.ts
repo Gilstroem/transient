@@ -4,7 +4,7 @@
  *
  * @param {string} [key = __DEFAULT] - the namespace of the transient data. If no key is specified, a default key is used.
  */
-declare function useTransient(key: string): any[];
+declare function useTransient<T>(key: string): T[];
 export default useTransient;
 /**
  * Insert a piece of transient data of any type, with
@@ -14,4 +14,4 @@ export default useTransient;
  * @param {number} [lifetime = 5000] - the lifetime in milliseconds. Optional - defaults to 5000.
  * @param {string} [key = __DEFAULT] - the namespace of the transient data. If no key is specified, a default key is used.
  */
-export declare function insert(data: any, lifetime?: number, key?: string): void;
+export declare function insert<T>(data: T, lifetime?: number, key?: string): void;

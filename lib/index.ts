@@ -9,12 +9,12 @@ const stores = new Stores();
  *
  * @param {string} [key = __DEFAULT] - the namespace of the transient data. If no key is specified, a default key is used.
  */
-function useTransient(key: string) {
-  const [transient, setTransient] = useState([]);
+function useTransient<T>(key: string): T[] {
+  const [transient, setTransient] = useState<Array<T>>([]);
 
   useEffect(() => {
-    stores.subscribe(setTransient, key);
-    return () => stores.unsubscribe(key, setTransient);
+    stores.subscribe<T>(setTransient, key);
+    return () => stores.unsubscribe<T>(key, setTransient);
   }, [key]);
 
   return transient;
@@ -30,6 +30,6 @@ export default useTransient;
  * @param {number} [lifetime = 5000] - the lifetime in milliseconds. Optional - defaults to 5000.
  * @param {string} [key = __DEFAULT] - the namespace of the transient data. If no key is specified, a default key is used.
  */
-export function insert(data: any, lifetime?: number, key?: string) {
+export function insert<T>(data: T, lifetime?: number, key?: string): void {
   stores.insert(data, lifetime, key);
 }

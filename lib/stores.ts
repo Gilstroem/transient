@@ -1,6 +1,6 @@
-class Store {
-  __transients: Map<number, any>;
-  __subscribers: { (transientStrings: string[]): void }[];
+class Store<T> {
+  __transients: Map<number, T>;
+  __subscribers: { (transient: T[]): void }[];
   __nextId: number;
 
   constructor() {
@@ -9,7 +9,7 @@ class Store {
     this.__nextId = 0;
   }
 
-  subscribe(cb: { (transientStrings: string[]): void }) {
+  subscribe(cb: { (transient: T[]): void }) {
     this.__subscribers.push(cb);
   }
 
@@ -17,7 +17,7 @@ class Store {
     return this.__subscribers.length !== 0;
   }
 
-  unsubscribe(cb: { (transientStrings: string[]): void }) {
+  unsubscribe(cb: { (transientStrings: T[]): void }) {
     const callbackIndex = this.__subscribers.indexOf(cb);
     if (callbackIndex >= 0) {
       this.__subscribers = this.__subscribers
@@ -26,7 +26,7 @@ class Store {
     }
   }
 
-  insert(data: any, lifetime: number) {
+  insert(data: T, lifetime: number) {
     const id = this.__nextId;
     this.incrementId();
     this.__transients.set(id, data);
@@ -50,30 +50,27 @@ class Store {
 }
 
 export default class Stores {
-  __stores: Map<string, Store>;
+  __stores: Map<string, Store<unknown>>;
 
   constructor() {
     this.__stores = new Map();
   }
 
-  subscribe(
-    cb: { (transientStrings: string[]): void },
+  subscribe<T>(
+    cb: { (transientStrings: T[]): void },
     key: string = "__DEFAULT"
   ) {
     const store = this.__stores.get(key);
     if (store) {
       store.subscribe(cb);
     } else {
-      const newStore = new Store();
+      const newStore = new Store<T>();
       newStore.subscribe(cb);
       this.__stores.set(key, newStore);
     }
   }
 
-  unsubscribe(
-    key: string = "__DEFAULT",
-    cb: { (transientStrings: string[]): void }
-  ) {
+  unsubscribe<T>(key: string = "__DEFAULT", cb: { (transient: T[]): void }) {
     const store = this.__stores.get(key);
     if (store) {
       store.unsubscribe(cb);
@@ -85,7 +82,7 @@ export default class Stores {
     }
   }
 
-  insert(data: any, lifetime: number = 5000, key: string = "__DEFAULT") {
+  insert<T>(data: T, lifetime: number = 5000, key: string = "__DEFAULT") {
     const store = this.__stores.get(key);
     if (store) {
       store.insert(data, lifetime);
