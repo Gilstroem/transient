@@ -273,8 +273,8 @@ export enum NotificationType {
 }
 
 export interface Notification {
-  text: string
-  type: NotificationType
+  text: string,
+  type: NotificationType,
   id: string
 }
 
